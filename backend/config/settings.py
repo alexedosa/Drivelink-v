@@ -89,24 +89,13 @@ TEMPLATES = [
 # ============================================
 # DATABASE (MySQL or SQLite)
 # ============================================
-if os.getenv('DB_ENGINE') == 'sqlite3':
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / os.getenv('DB_NAME', 'db.sqlite3'),
-        }
+# Temporary override to force SQLite
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': os.getenv('DB_NAME'),
-            'USER': os.getenv('DB_USER'),
-            'PASSWORD': os.getenv('DB_PASSWORD'),
-            'HOST': os.getenv('DB_HOST', 'localhost'),
-            'PORT': os.getenv('DB_PORT', '3306'),
-        }
-    }
+}
 
 # ============================================
 # PASSWORD VALIDATION
@@ -137,7 +126,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # ============================================
 # CUSTOM USER MODEL
 # ============================================
-# AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'users.User'
 
 # ============================================
 # CORS (Cross-Origin Resource Sharing)
