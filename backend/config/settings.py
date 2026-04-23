@@ -1,6 +1,5 @@
 """
 DriveLink Django Settings
-Single file for all environments
 """
 
 from pathlib import Path
@@ -8,24 +7,21 @@ import os
 from dotenv import load_dotenv
 from datetime import timedelta
 
-# Load environment variables
 load_dotenv()
 
-# Build paths
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ============================================
 # SECURITY
 # ============================================
-SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key-change-me')
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 # ============================================
 # APPLICATION DEFINITION
 # ============================================
 INSTALLED_APPS = [
-    # Django built-in
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,12 +36,11 @@ INSTALLED_APPS = [
     'django_filters',
     
     # Local apps
+    'apps.core',
     'apps.users',
     'apps.cars',
     'apps.rentals',
     'apps.purchases',
-    'apps.payments',
-    'apps.core',
 ]
 
 # ============================================
@@ -53,7 +48,7 @@ INSTALLED_APPS = [
 # ============================================
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # Must be as high as possible
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -62,15 +57,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# ============================================
-# URL & WSGI
-# ============================================
 ROOT_URLCONF = 'config.urls'
-WSGI_APPLICATION = 'config.wsgi.application'
 
-# ============================================
-# TEMPLATES
-# ============================================
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -86,10 +74,11 @@ TEMPLATES = [
     },
 ]
 
+WSGI_APPLICATION = 'config.wsgi.application'
+
 # ============================================
-# DATABASE (MySQL or SQLite)
+# DATABASE
 # ============================================
-# Temporary override to force SQLite
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -129,10 +118,37 @@ MEDIA_ROOT = BASE_DIR / 'media'
 AUTH_USER_MODEL = 'users.User'
 
 # ============================================
-# CORS (Cross-Origin Resource Sharing)
+# CORS (Cross-Origin Resource Sharing) - FIXED
 # ============================================
-CORS_ALLOWED_ORIGINS = [os.getenv('FRONTEND_URL', 'http://localhost:5173')]
-CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:5174',
+]
+CORS_ALLOW_CREDENTIALS = True  
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
 
 # ============================================
 # DJANGO REST FRAMEWORK
@@ -143,14 +159,13 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 12,
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 # ============================================
-# SIMPLE JWT (JSON Web Tokens)
+# SIMPLE JWT
 # ============================================
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
@@ -158,13 +173,12 @@ SIMPLE_JWT = {
 }
 
 # ============================================
-# PAYSTACK PAYMENT
+# PAYSTACK
 # ============================================
-PAYSTACK_SECRET_KEY = os.getenv('PAYSTACK_SECRET_KEY')
-PAYSTACK_PUBLIC_KEY = os.getenv('PAYSTACK_PUBLIC_KEY')
-PAYSTACK_WEBHOOK_SECRET = os.getenv('PAYSTACK_WEBHOOK_SECRET')
+PAYSTACK_SECRET_KEY = os.getenv('PAYSTACK_SECRET_KEY', '')
+PAYSTACK_PUBLIC_KEY = os.getenv('PAYSTACK_PUBLIC_KEY', '')
 
 # ============================================
-# DEFAULT PRIMARY KEY FIELD
+# DEFAULT PRIMARY KEY
 # ============================================
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

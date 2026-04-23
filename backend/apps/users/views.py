@@ -32,6 +32,27 @@ class LoginView(APIView):
             'refresh': str(refresh),
         }, status=status.HTTP_200_OK)
 
+class AdminLoginView(APIView):
+    permission_classes = [AllowAny]
+    
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        
+        if user.role != 'admin':
+            return Response(
+                {'detail': 'Access denied. This endpoint is for admins only.'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+            
+        refresh = RefreshToken.for_user(user)
+        return Response({
+            'user': UserSerializer(user).data,
+            'access': str(refresh.access_token),
+            'refresh': str(refresh),
+        }, status=status.HTTP_200_OK)
+
 class MeView(generics.RetrieveUpdateAPIView):
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
