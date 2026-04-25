@@ -1,0 +1,213 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg-secondary);
+}
+
+.main {
+  flex: 1;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  width: 100%;
+  padding: 40px var(--container-pad);
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
+.tableWrap {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  background: var(--bg-secondary);
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.tableRow {
+  border-bottom: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.tableRow:hover {
+  background: var(--bg-secondary);
+}
+
+.table td {
+  padding: 16px;
+  font-size: 14px;
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+
+.carName {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.tdMuted {
+  color: var(--text-secondary) !important;
+}
+
+.tdPrice {
+  font-family: monospace;
+  font-size: 15px !important;
+  font-weight: 600;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.badgeGreen {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.badgeYellow {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.badgeRed {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.badgeGray {
+  background: rgba(107, 114, 128, 0.1);
+  color: #6b7280;
+}
+
+.cancelBtn {
+  background: transparent;
+  border: 1px solid var(--border-medium);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cancelBtn:hover {
+  background: var(--error-soft);
+  color: var(--error);
+  border-color: transparent;
+}
+
+.expandRow {
+  background: var(--bg-secondary);
+}
+
+.expandContent {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.expandContent div {
+  display: flex;
+  align-items: center;
+}
+
+.expLabel {
+  width: 120px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.skeletonWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skeletonRow {
+  height: 60px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  animation: pulse 1.5s infinite;
+}
+
+.emptyState {
+  padding: 60px 20px;
+  text-align: center;
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+}
+
+.emptyIcon {
+  margin: 0 auto 16px;
+}
+
+.emptyState h3 {
+  font-size: 18px;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.emptyState p {
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.browseBtn {
+  background: var(--red-primary);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.browseBtn:hover {
+  opacity: 0.9;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}

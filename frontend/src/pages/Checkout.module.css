@@ -1,0 +1,175 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg-secondary);
+  padding: 0 0 80px;
+}
+
+.empty {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 16px;
+}
+
+.topBar {
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-light);
+  padding: 0 var(--container-pad);
+  height: 60px;
+  display: flex; align-items: center; gap: 16px;
+  max-width: 100%; position: sticky; top: 0; z-index: var(--z-sticky);
+}
+
+.backLink {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 13px; font-weight: 600; color: var(--text-tertiary);
+  transition: color var(--transition-fast);
+}
+.backLink:hover { color: var(--red-primary); }
+
+.pageTitle {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 800;
+  color: var(--text-primary); letter-spacing: -0.02em;
+}
+
+.backBtn {
+  padding: 10px 22px; background: var(--red-primary); color: #fff;
+  border-radius: var(--radius-md); font-weight: 600; font-size: 14px;
+}
+
+.content {
+  max-width: 960px; margin: 0 auto;
+  padding: 32px var(--container-pad) 0;
+  display: grid; grid-template-columns: 1fr 400px;
+  gap: 24px; align-items: start;
+}
+
+/* ── Shared section ──────────────────────────────────────── */
+.summary,
+.payment {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: 17px; font-weight: 800;
+  color: var(--text-primary); letter-spacing: -0.02em;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+/* ── Car row ─────────────────────────────────────────────── */
+.carRow { display: flex; gap: 14px; align-items: flex-start; }
+.carImgWrap {
+  width: 100px; height: 70px; border-radius: var(--radius-md);
+  overflow: hidden; background: var(--bg-tertiary); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.carImg { width: 100%; height: 100%; object-fit: cover; }
+.carImgPlaceholder { font-size: 28px; }
+.carInfo { flex: 1; min-width: 0; }
+.carName { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 3px; }
+.carMeta { font-size: 13px; color: var(--text-tertiary); margin-bottom: 8px; }
+.typeBadge {
+  display: inline-flex; padding: 2px 10px;
+  border-radius: var(--radius-full); font-size: 11px; font-weight: 700;
+}
+.typRent { background: var(--info-soft);    color: var(--info); }
+.typBuy  { background: var(--success-soft); color: var(--success); }
+
+/* ── Line items ──────────────────────────────────────────── */
+.lineItems { display: flex; flex-direction: column; }
+
+/* ── Add-ons ─────────────────────────────────────────────── */
+.addons { display: flex; flex-direction: column; gap: 10px; }
+.addonsTitle { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+.addonItem {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px; border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-lg); cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+.addonItem:hover { border-color: var(--red-primary); background: var(--red-soft); }
+.addonCheck { width: 16px; height: 16px; accent-color: var(--red-primary); flex-shrink: 0; }
+.addonInfo { flex: 1; }
+.addonLabel { font-size: 13px; font-weight: 600; color: var(--text-primary); display: block; }
+.addonDesc  { font-size: 12px; color: var(--text-muted); }
+.addonPrice { font-size: 13px; font-weight: 700; color: var(--text-primary); white-space: nowrap; }
+
+/* ── Grand total ─────────────────────────────────────────── */
+.grandTotal {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px; background: var(--bg-secondary); border-radius: var(--radius-lg);
+  font-size: 15px; font-weight: 700; color: var(--text-primary);
+}
+.grandAmount { font-family: var(--font-display); font-size: 22px; font-weight: 900; color: var(--red-primary); letter-spacing: -0.02em; }
+
+/* ── Payment section ─────────────────────────────────────── */
+.customerCard {
+  display: flex; gap: 12px; align-items: center;
+  padding: 14px; background: var(--bg-secondary); border-radius: var(--radius-lg);
+}
+.customerAvatar {
+  width: 40px; height: 40px; border-radius: var(--radius-full);
+  background: var(--red-primary); color: #fff;
+  font-size: 16px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.customerName  { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+.customerEmail { font-size: 12px; color: var(--text-muted); }
+
+.payInfo {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 14px; background: var(--info-soft);
+  border-radius: var(--radius-lg); color: var(--info);
+  font-size: 13px; line-height: 1.6;
+}
+
+.errorBanner {
+  padding: 12px 14px; background: var(--error-soft);
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: var(--radius-md);
+  font-size: 13px; color: var(--error);
+}
+
+.orderTotal {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 14px; font-weight: 600; color: var(--text-secondary);
+  padding: 12px 0;
+  border-top: 1px solid var(--border-light);
+}
+.orderAmount { font-family: var(--font-display); font-size: 20px; font-weight: 900; color: var(--red-primary); letter-spacing: -0.02em; }
+
+.payBtn {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; width: 100%; padding: 14px;
+  background: var(--red-primary); color: #fff;
+  border-radius: var(--radius-md);
+  font-size: 15px; font-weight: 700;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+.payBtn:hover:not(:disabled) { background: var(--red-hover); }
+.payBtn:active:not(:disabled) { transform: scale(0.98); }
+.payBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.spinner {
+  display: inline-block; width: 20px; height: 20px;
+  border: 2.5px solid rgba(255,255,255,0.3); border-top-color: #fff;
+  border-radius: 50%; animation: spin 0.65s linear infinite;
+}
+
+.payNote { text-align: center; font-size: 12px; color: var(--text-muted); }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 900px) {
+  .content { grid-template-columns: 1fr; }
+}
+@media (max-width: 767px) {
+  .summary, .payment { padding: 20px; }
+  .content { padding: 16px; }
+}

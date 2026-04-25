@@ -32,10 +32,11 @@ class PurchaseCreateSerializer(serializers.ModelSerializer):
 class PurchaseListSerializer(serializers.ModelSerializer):
     car_name = serializers.CharField(source='car.name')
     car_image = serializers.SerializerMethodField()
+    user_email = serializers.EmailField(source='user.email', read_only=True)
     
     class Meta:
         model = Purchase
-        fields = ['id', 'car_name', 'car_image', 'quantity', 'unit_price', 'total_amount', 'status', 'created_at']
+        fields = ['id', 'car_name', 'car_image', 'user_email', 'quantity', 'unit_price', 'total_amount', 'status', 'created_at']
     
     def get_car_image(self, obj):
         return obj.car.main_image.url if obj.car.main_image else None

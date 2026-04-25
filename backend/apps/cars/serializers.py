@@ -52,13 +52,18 @@ class CarCreateUpdateSerializer(serializers.ModelSerializer):
         return value
     
     def validate(self, data):
-        if data['category'] == 'rental' and not data.get('daily_rate'):
+        category = data.get('category', getattr(self.instance, 'category', None))
+        daily_rate = data.get('daily_rate', getattr(self.instance, 'daily_rate', None))
+        purchase_price = data.get('purchase_price', getattr(self.instance, 'purchase_price', None))
+        
+        if category == 'rental' and not daily_rate:
             raise serializers.ValidationError({'daily_rate': 'Daily rate required for rental cars'})
         
-        if data['category'] == 'purchase' and not data.get('purchase_price'):
+        if category == 'purchase' and not purchase_price:
             raise serializers.ValidationError({'purchase_price': 'Purchase price required for purchase cars'})
         
-        if data.get('stock', 0) < 0:
+        stock = data.get('stock', getattr(self.instance, 'stock', 0))
+        if stock is not None and stock < 0:
             raise serializers.ValidationError({'stock': 'Stock cannot be negative'})
         
         return data

@@ -1,0 +1,160 @@
+.footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-light);
+  padding: var(--space-12) var(--container-pad) var(--space-6);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* ── 4-col grid ──────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 40px;
+}
+
+/* ── Column shared ───────────────────────────────────────── */
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Logo ────────────────────────────────────────────────── */
+.logo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.tagline {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* ── Socials ─────────────────────────────────────────────── */
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  color: var(--text-tertiary);
+  background: var(--bg-tertiary);
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.socialLink:hover {
+  color: var(--red-primary);
+  background: var(--red-soft);
+}
+
+/* ── Column heading ──────────────────────────────────────── */
+.colTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
+  margin-bottom: 16px;
+}
+
+/* ── Nav links ───────────────────────────────────────────── */
+.navLink {
+  display: block;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: color var(--transition-fast);
+  line-height: 1.5;
+}
+
+.navLink:last-child {
+  margin-bottom: 0;
+}
+
+.navLink:hover {
+  color: var(--red-primary);
+}
+
+/* ── Contact list ────────────────────────────────────────── */
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+}
+
+.contactItem svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contactLink {
+  color: var(--text-tertiary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.contactLink:hover {
+  color: var(--red-primary);
+}
+
+/* ── Copyright bar ───────────────────────────────────────── */
+.copyright {
+  border-top: 1px solid var(--border-light);
+  margin-top: 48px;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.copyright p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer {
+    padding: var(--space-10) var(--container-pad) var(--space-6);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .copyright {
+    margin-top: 32px;
+  }
+}

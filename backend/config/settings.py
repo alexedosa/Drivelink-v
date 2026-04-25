@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'apps.cars',
     'apps.rentals',
     'apps.purchases',
+    'apps.payments',
 ]
 
 # ============================================

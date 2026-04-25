@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
 from .models import Rental
 from .serializers import RentalCreateSerializer, RentalListSerializer, RentalDetailSerializer
-from apps.core.permissions import IsOwnerOrAdmin
+from apps.core.permissions import IsOwnerOrAdmin, IsAdmin
 from apps.core.utils import generate_reference
 
 class CreateRentalView(generics.CreateAPIView):
@@ -22,6 +22,13 @@ class MyRentalsView(generics.ListAPIView):
     
     def get_queryset(self):
         return Rental.objects.filter(user=self.request.user).order_by('-created_at')
+
+class AllRentalsView(generics.ListAPIView):
+    serializer_class = RentalListSerializer
+    permission_classes = [IsAdmin]
+    
+    def get_queryset(self):
+        return Rental.objects.all().order_by('-created_at')
 
 class RentalDetailView(generics.RetrieveAPIView):
     queryset = Rental.objects.all()

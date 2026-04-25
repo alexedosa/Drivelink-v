@@ -26,3 +26,15 @@ class Transmission:
     MANUAL = 'manual'
     AUTOMATIC = 'automatic'
     CHOICES = [(MANUAL, 'Manual'), (AUTOMATIC, 'Automatic')]
+
+class PaymentStatus:
+    PENDING = 'pending'
+    SUCCESS = 'success'
+    FAILED = 'failed'
+    CANCELLED = 'cancelled'
+    CHOICES = [(PENDING, 'Pending'), (SUCCESS, 'Success'), (FAILED, 'Failed'), (CANCELLED, 'Cancelled')]
+
+class TransactionType:
+    PURCHASE = 'purchase'
+    RENTAL = 'rental'
+    CHOICES = [(PURCHASE, 'Purchase'), (RENTAL, 'Rental')]
